@@ -13,7 +13,7 @@ using namespace std;
 class ProteinSequence : public Translation {
 public:
     //Defoult
-    ProteinSequence(){
+    ProteinSequence(): Translation(){
         aminoAcids = "";
     }
     //Конструктор инициализации(Мы не обращаемся к конструктору в родительский класс, так как там есть ограничения
@@ -26,7 +26,7 @@ public:
         }
     }
     //copy
-    ProteinSequence(const ProteinSequence &ProteinSequencespointer){
+    ProteinSequence(const ProteinSequence &ProteinSequencespointer): Translation(ProteinSequencespointer){
         aminoAcids = ProteinSequencespointer.aminoAcids;
     }
     // сеттер
