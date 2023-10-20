@@ -13,7 +13,6 @@ public:
 // Конструктор по умолчанию
     Translation(){
         nucleotide = "";
-//        aminoAcids = "";
     }
 // Инициализация (Если убрать второе условие можно задать цепочку любой длины)
     Translation(string _nucleotide){
@@ -23,30 +22,26 @@ public:
             nucleotide = "";
         }
     }
-    // копирование
+// копирование
     Translation(const Translation &Translationpointer){
         nucleotide = Translationpointer.nucleotide;
 
     }
-    // геттер и сеттер
+// геттер и сеттер
     string getNucleotide() const{
         return nucleotide;
     }
-    //(Если убрать второе условие можно задать цепочку любой длины)
+//(Если убрать второе условие можно задать цепочку любой длины)
     virtual void setNucleotide(string _nucleotide){
         if(_nucleotide.find_first_not_of(TRUE_NUCLEOTID) == string::npos && size(_nucleotide) == 3) {
             nucleotide = _nucleotide;
         }else nucleotide = "";
     }
-//    string getAminoAcids() const{
-//        return aminoAcids;
-//    }
+
 // Преобразование триплетов в аминокислоту
     virtual string translation(){
     string aminoAcids;
-//        if (size(nucleotide) != 3){
-//            return "is not a triplet";
-//        }
+    string geneticCode;
         for (int i = 0; i < size(nucleotide); ++i) {
             geneticCode+=nucleotide[i];
             if(size(geneticCode) == 3){
@@ -59,19 +54,17 @@ public:
         return aminoAcids;
     }
 
-    //Ф-ция идентификатор,
+//Ф-ция идентификатор, это класс не является белковой последовательностью, а одной аминокислотой, поэтому возвращаем false
     virtual bool isProteinSequence(){
         return false;
     };
 
 protected:
     string nucleotide;
-    string geneticCode;
-//    string aminoAcids;
+//    string geneticCode;
 // Ограничение должно быть, потому что мы не можем работать со сторокой которая содержить не нуклеотиды,
 // это будет являться неверными входными данными
     string TRUE_NUCLEOTID = "AGCU";
-//    string Amino;
     // трансляция
     string NucleotidsToAmino(string geneticCode){
         if (geneticCode == "GGU" || geneticCode == "GGC" || geneticCode == "GGA" || geneticCode == "GGG"){

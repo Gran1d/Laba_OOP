@@ -5,8 +5,8 @@
 #ifndef LABA2_OOP_PROTEINSEQUENCE_H
 #define LABA2_OOP_PROTEINSEQUENCE_H
 #include "Transcription.h"
-#include <string>
-#include <iostream>
+//#include <string>
+//#include <iostream>
 
 using namespace std;
 
@@ -16,7 +16,8 @@ public:
     ProteinSequence(){
         aminoAcids = "";
     }
-    //init
+    //Конструктор инициализации(Мы не обращаемся к конструктору в родительский класс, так как там есть ограничения
+    //Поэтому для того чтобы задать строку мы используем перегруженный сеттер, в котором нет ограничения
     ProteinSequence(string _aminoAcids){
         if(_aminoAcids.find_first_not_of(TRUE_AMINOACIDS) == string::npos) {
             aminoAcids = _aminoAcids;
@@ -27,7 +28,6 @@ public:
     //copy
     ProteinSequence(const ProteinSequence &ProteinSequencespointer){
         aminoAcids = ProteinSequencespointer.aminoAcids;
-
     }
     // сеттер
     void setAminoAcids(string _aminoAcids){
@@ -48,7 +48,9 @@ public:
         return aminoAcids;
     }
     //Переопределение метода трансляции
+    //Здесь этот метод преобразует цепочку из нуклеотидов в аминокислоты и конкатенирут с аминокислотами, которые уже были переданы
     string translation() override{
+        string geneticCode;
         for (int i = 0; i < size(nucleotide); ++i) {
             geneticCode+=nucleotide[i];
             if(size(geneticCode) == 3){
@@ -60,12 +62,13 @@ public:
 
         return aminoAcids;
     }
-    //функция идентификации класса
+    //функция идентификации класса(этот класс является белковой последовательностью)
     bool isProteinSequence() override{
         return true;
     };
 private:
     string aminoAcids;
+    //Задаем алфавит, так как строку содержащую другие символы будет некорректно вводить
     string TRUE_AMINOACIDS = "gavilpstcmdneqkrhfyw";
 };
 

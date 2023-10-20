@@ -2,7 +2,7 @@
 // Created by Артём Сиротин on 25.09.2023.
 //
 
-#include "Transcription.h"
+//#include "Transcription.h"
 #include "ProteinSequence.h"
 
 int main(){
@@ -15,6 +15,11 @@ int main(){
     assert(initedTranscription.getNucleotide() == "AUG");
     assert(initedTranscription.translation() == "m");
     assert(initedTranscription.isProteinSequence() == false);
+    //Должен вернуть пустую строку так как мы передаем не триплет а последовательность из триплетов
+    Translation initedTranscription1("AUGGGG");
+    assert(initedTranscription1.getNucleotide() == "");
+    assert(initedTranscription1.translation() == "");
+    assert(initedTranscription1.isProteinSequence() == false);
     cout << "Test for initialization constructor passed" << endl;
 
     Translation copiedTranscription = Translation(initedTranscription);
@@ -53,7 +58,7 @@ int main(){
     assert(copyProteinSequnce.isProteinSequence() == true);
     assert(copyProteinSequnce.translation() == "agwwagg");
     cout << "Test for copy constructor passed" << endl;
-    //
+    //Проверка геттеров и сеттеров в наследуемом классе
     defoltProteinSequence.setNucleotide("UGGUAU");
     assert(defoltProteinSequence.getNucleotide() == "UGGUAU");
     assert(defoltProteinSequence.translation() == "wy");
