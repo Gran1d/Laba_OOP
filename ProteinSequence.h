@@ -63,8 +63,8 @@ public:
         return aminoAcids;
     }
     //функция идентификации класса(этот класс является белковой последовательностью)
-    bool isProteinSequence() override{
-        return true;
+    string identify() const override{
+        return "ProteinSequence";
     };
 private:
     string aminoAcids;

@@ -55,8 +55,8 @@ public:
     }
 
 //Ф-ция идентификатор, это класс не является белковой последовательностью, а одной аминокислотой, поэтому возвращаем false
-    virtual bool isProteinSequence(){
-        return false;
+    virtual string identify() const{
+        return "Transcription";
     };
 
 protected:
